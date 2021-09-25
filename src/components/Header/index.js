@@ -1,12 +1,13 @@
 import React from "react";
 import "./style.css";
 import { Container } from "react-bootstrap";
-import { FaRedo } from "react-icons/fa";
+import IconButton from '@mui/material/IconButton';
+import RefreshIcon from '@mui/icons-material/Refresh';
 
 const Header = ({ moves, bestScore, handleRestart }) => {
   return (
     <div>
-      <h1>Memory Game</h1>
+      <h1> Jungle Memory </h1>
       <Container>
         <div className="sub-header">
           <div className="moves">
@@ -14,9 +15,9 @@ const Header = ({ moves, bestScore, handleRestart }) => {
             {moves}
           </div>
           <div className="reshuffle">
-            <button onClick={handleRestart}>
-              <FaRedo />
-            </button>
+            <IconButton aria-label="fingerprint"  onClick={handleRestart}>
+              <RefreshIcon color="secondary" sx={{ fontSize: 40 }}/>
+            </IconButton>
           </div>
           {localStorage.getItem("bestScore") && (
             <div className="high-score">

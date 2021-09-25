@@ -1,16 +1,27 @@
+@font-face {
+  font-family: "Creepy";
+  src: url("../../Fonts/Creepy.woff") format("woff"),url("../../Fonts//Creepy2.woff2") format("woff2")
+}
+@font-face {
+  font-family: "Lunacy";
+  src: url("../../Fonts/Lunacy.woff") format("woff"),url("../../Fonts/Lunacy.woff2") format("woff2")
+}
+
 h1 {
-    padding: 20px;
-    color: rgb(60, 33, 122);
-  
-    background: radial-gradient(rgb(253 126 20 / 80%), rgba(0, 255, 255, 0.589));
+    color: #A3CB38;
     text-align: center;
-    font-family: "Russo One", sans-serif;
+    font-family: Creepy, serif;
+    font-weight: normal;
+    font-size: 4rem;
+    margin-top: 20px;
+    
   }
   
   .sub-header {
+    font-family: Lunacy, serif;
     padding: 5px;
-    color: rgb(60, 33, 122);
-    font-size: 20px;
+    color: #C4E538;
+    font-size: 2rem;
     font-weight: 800;
     justify-content: center;
     display: flex;
