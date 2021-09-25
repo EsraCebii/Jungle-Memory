@@ -1,32 +1,33 @@
-import React from 'react'
+import React from "react";
 import "./style.css";
-import { Container} from "react-bootstrap";
-import { FaRedo} from "react-icons/fa";
+import { Container } from "react-bootstrap";
+import { FaRedo } from "react-icons/fa";
 
-function Header() {
-    return (
-        <div>
-        <h1>Memory Game</h1>
-        <Container>
-          <div className="sub-header">
-            <div className="moves">
-              <span className="bold">Moves:</span>
-              
-            </div>
-            <div className="reshuffle">
-              <button >
-                <FaRedo />
-              </button>
-            </div>
-           
-              <div className="high-score">
-                <span>Best Score:</span>
-              </div>
-        
+const Header = ({ moves, bestScore, handleRestart }) => {
+  return (
+    <div>
+      <h1>Memory Game</h1>
+      <Container>
+        <div className="sub-header">
+          <div className="moves">
+            <span className="bold">Moves:</span>
+            {moves}
           </div>
-        </Container>
-      </div>
-    )
-}
+          <div className="reshuffle">
+            <button onClick={handleRestart}>
+              <FaRedo />
+            </button>
+          </div>
+          {localStorage.getItem("bestScore") && (
+            <div className="high-score">
+              <span>Best Score:</span>
+              {bestScore}
+            </div>
+          )}
+        </div>
+      </Container>
+    </div>
+  );
+};
 
-export default Header
+export default Header;
