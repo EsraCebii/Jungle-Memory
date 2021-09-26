@@ -7,8 +7,6 @@ import Card from "./components/Card";
 import Finish from "./components/Finish/index.js";
 import Start from "./components/Start/index";
 
-
-
 function swap(array, i, j) {
   const temp = array[i];
   array[i] = array[j];
@@ -195,11 +193,8 @@ const App = () => {
           kazandı={kazandı}
         />
         </div>
-
         )
       }
-      
-   
     </div>
   );
 };
