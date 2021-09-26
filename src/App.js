@@ -6,7 +6,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import Card from "./components/Card";
 import Finish from "./components/Finish/index.js";
 
-// FisherYates Modern Shuffle Algorithm
+
+
 function swap(array, i, j) {
   const temp = array[i];
   array[i] = array[j];
@@ -36,6 +37,10 @@ const App = () => {
   );
   const timeout = useRef(null);
 
+  console.log(matchedCards);
+
+  const[puan, setPuan]= useState(0);
+
   const disable = () => {
     setShouldDisableAllCards(true);
   };
@@ -47,7 +52,7 @@ const App = () => {
   const checkCompletion = () => {
     if (Object.keys(matchedCards).length === uniqueCardsArray.length) {
       setShowModal(true);
-      const highScore = Math.min(moves, bestScore);
+      const highScore = Math.max(puan, bestScore);
       setBestScore(highScore);
       localStorage.setItem("bestScore", highScore);
     }
@@ -57,10 +62,11 @@ const App = () => {
     const [first, second] = openCards;
     enable();
     if (cards[first].type === cards[second].type) {
+      setPuan(puan+50)
       setMatchedcards((prev) => ({ ...prev, [cards[first].type]: true }));
       setOpencards([]);
-      // alert("you have found a match");
-      return;
+    }else {
+      setPuan(puan-25)
     }
     timeout.current = setTimeout(() => {
       setOpencards([]);
@@ -85,13 +91,13 @@ const App = () => {
     return () => {
       clearTimeout(timeout);
     };
-    // eslint-disable-next-line
+ 
   }, [openCards]);
 
   useEffect(() => {
-    // eslint-disable-next-line
+  
     checkCompletion();
-    // eslint-disable-next-line
+   
   }, [matchedCards]);
 
   const checkIsFlipped = (index) => {
@@ -105,6 +111,7 @@ const App = () => {
     setOpencards([]);
     setShowModal(false);
     setMoves(0);
+    setPuan(0);
     setShouldDisableAllCards(false);
     setCards(shuffleCards(uniqueCardsArray.concat(uniqueCardsArray)));
   };
@@ -115,6 +122,7 @@ const App = () => {
         moves={moves}
         bestScore={bestScore}
         handleRestart={handleRestart}
+        puan={puan}
       />
       <Container>
         <Row>
@@ -125,6 +133,7 @@ const App = () => {
                   key={index}
                   card={card}
                   index={index}
+                  matchedCards={matchedCards}
                   isDisabled={shouldDisableAllCards}
                   isInactive={checkIsInactive(card)}
                   isFlipped={checkIsFlipped(index)}
@@ -137,7 +146,7 @@ const App = () => {
       </Container>
       <Finish
         showModal={showModal}
-        moves={moves}
+        puan={puan}
         bestScore={bestScore}
         handleRestart={handleRestart}
       />
