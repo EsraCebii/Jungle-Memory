@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import "./style.css";
 
-const Finish = ({ handleRestart, showModal, bestScore, puan }) => {
+const Finish = ({num,kazandı, handleRestart, showModal, bestScore, puan }) => {
   return (
     <div>
       <Dialog
@@ -18,9 +18,21 @@ const Finish = ({ handleRestart, showModal, bestScore, puan }) => {
         aria-describedby="alert-dialog-description"
       >
         <h2> Jungle Memory Game </h2>
-        <DialogTitle id="alert-dialog-title">
-          Hurray ! You completed the game !!
+        {kazandı && (
+          <DialogTitle id="alert-dialog-title">
+          "Hurray ! You completed the game !!"
+          </DialogTitle>
+
+        ) }
+        {
+          !kazandı && (
+            <DialogTitle id="alert-dialog-title">
+         Oh My God !! Time is Up.
         </DialogTitle>
+
+          )
+        }
+        
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             Your score : {puan}  Your best score is {bestScore}

@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import { Col, Container, Row } from "react-bootstrap";
 import Card from "./components/Card";
 import Finish from "./components/Finish/index.js";
+import Start from "./components/Start/index";
 
 
 
@@ -35,11 +36,19 @@ const App = () => {
   const [bestScore, setBestScore] = useState(
     JSON.parse(localStorage.getItem("bestScore")) || Number.POSITIVE_INFINITY
   );
+
+  const [num, setNum] = useState(51);
+  let intervalRef = useRef();
+  const decreaseNum = () => setNum((prev) => prev - 1);
+
+  const handleClick = () => {
+      intervalRef.current = setInterval(decreaseNum, 1000);
+  };
+
+
   const timeout = useRef(null);
+  const [puan, setPuan] = useState(0);
 
-  console.log(matchedCards);
-
-  const[puan, setPuan]= useState(0);
 
   const disable = () => {
     setShouldDisableAllCards(true);
@@ -52,9 +61,32 @@ const App = () => {
   const checkCompletion = () => {
     if (Object.keys(matchedCards).length === uniqueCardsArray.length) {
       setShowModal(true);
+      clearInterval(intervalRef.current);
       const highScore = Math.max(puan, bestScore);
       setBestScore(highScore);
       localStorage.setItem("bestScore", highScore);
+    }
+  };
+  
+  useEffect(() => {
+    time()
+  }, [num])
+
+  const kazandı = Object.keys(matchedCards).length === uniqueCardsArray.length;
+  const time = () => {
+    if (Object.keys(matchedCards).length === uniqueCardsArray.length && num === 0) {
+      clearInterval(intervalRef.current);
+      setShowModal(true);
+      const highScore = Math.max(puan, bestScore);
+      setBestScore(highScore);
+      localStorage.setItem("bestScore", highScore);
+    } else if( num === 0) {
+      clearInterval(intervalRef.current);
+      setShowModal(true);
+      const highScore = Math.max(puan, bestScore);
+      setBestScore(highScore);
+      localStorage.setItem("bestScore", highScore);
+
     }
   };
 
@@ -62,11 +94,11 @@ const App = () => {
     const [first, second] = openCards;
     enable();
     if (cards[first].type === cards[second].type) {
-      setPuan(puan+50)
+      setPuan(puan + 50)
       setMatchedcards((prev) => ({ ...prev, [cards[first].type]: true }));
       setOpencards([]);
-    }else {
-      setPuan(puan-25)
+    } else {
+      setPuan(puan - 25)
     }
     timeout.current = setTimeout(() => {
       setOpencards([]);
@@ -91,13 +123,13 @@ const App = () => {
     return () => {
       clearTimeout(timeout);
     };
- 
+
   }, [openCards]);
 
   useEffect(() => {
-  
+
     checkCompletion();
-   
+
   }, [matchedCards]);
 
   const checkIsFlipped = (index) => {
@@ -112,44 +144,64 @@ const App = () => {
     setShowModal(false);
     setMoves(0);
     setPuan(0);
+    setNum(51);
+    intervalRef.current = setInterval(decreaseNum, 1000);
     setShouldDisableAllCards(false);
     setCards(shuffleCards(uniqueCardsArray.concat(uniqueCardsArray)));
   };
 
   return (
-    <div>
-      <Header
-        moves={moves}
-        bestScore={bestScore}
-        handleRestart={handleRestart}
-        puan={puan}
-      />
-      <Container>
-        <Row>
-          {cards.map((card, index) => {
-            return (
-              <Col xs={6} md={3} lg={2}>
-                <Card
-                  key={index}
-                  card={card}
-                  index={index}
-                  matchedCards={matchedCards}
-                  isDisabled={shouldDisableAllCards}
-                  isInactive={checkIsInactive(card)}
-                  isFlipped={checkIsFlipped(index)}
-                  onClick={handleCardClick}
-                />
-              </Col>
-            );
-          })}
-        </Row>
-      </Container>
-      <Finish
-        showModal={showModal}
-        puan={puan}
-        bestScore={bestScore}
-        handleRestart={handleRestart}
-      />
+    <div> {
+      num === 51 && (
+        <Start handleClick={handleClick} />
+      )
+      }
+      {
+        num < 51 && (
+          <div>
+          <Header
+          moves={moves}
+          bestScore={bestScore}
+          handleRestart={handleRestart}
+          puan={puan}
+          num= {num}
+          
+        
+        />
+        <Container>
+          <Row>
+            {cards.map((card, index) => {
+              return (
+                <Col xs={6} md={3} lg={2}>
+                  <Card
+                    key={index}
+                    card={card}
+                    index={index}
+                    matchedCards={matchedCards}
+                    isDisabled={shouldDisableAllCards}
+                    isInactive={checkIsInactive(card)}
+                    isFlipped={checkIsFlipped(index)}
+                    onClick={handleCardClick}
+                  />
+                </Col>
+              );
+            })}
+          </Row>
+        </Container>
+        <Finish
+          num={num}
+          showModal={showModal}
+          puan={puan}
+          bestScore={bestScore}
+          handleRestart={handleRestart}
+          kazandı={kazandı}
+        />
+        </div>
+
+        )
+      }
+      
+   
     </div>
   );
 };

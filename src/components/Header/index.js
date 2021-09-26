@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 
 
 
-const Header = ({ moves, bestScore, handleRestart,puan }) => {
+const Header = ({ num, bestScore, handleRestart,puan }) => {
  
   return (
     <div>
@@ -17,8 +17,8 @@ const Header = ({ moves, bestScore, handleRestart,puan }) => {
       <Container>
         <div className="sub-header">
           <div className="moves">
-            <span className="bold">Moves: </span>
-             {moves}
+            <span className="bold">Time: </span>
+             {num}
           </div>
           <div className="moves">
             <span className="bold">Your Score: </span>

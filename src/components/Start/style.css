@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "Creepy";
+    src: url("../../Fonts/Creepy.woff") format("woff"),url("../../Fonts//Creepy2.woff2") format("woff2")
+  }
+.cl {
+    margin-left: 45%;
+    margin-top: 20px;
+}
+.start{
+    margin-top: 10%;
+}
