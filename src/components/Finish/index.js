@@ -7,7 +7,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import "./style.css";
 
-const Finish = ({num,kazandı, handleRestart, showModal, bestScore, puan }) => {
+const Finish = ({kazandı, handleRestart, showModal, bestScore, puan }) => {
   return (
     <div>
       <Dialog

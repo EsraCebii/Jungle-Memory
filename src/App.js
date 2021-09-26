@@ -127,9 +127,7 @@ const App = () => {
   }, [openCards]);
 
   useEffect(() => {
-
     checkCompletion();
-
   }, [matchedCards]);
 
   const checkIsFlipped = (index) => {
