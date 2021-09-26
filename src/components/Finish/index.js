@@ -17,13 +17,13 @@ const Finish = ({ handleRestart, showModal, bestScore, moves }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <h2>Memory Game</h2>
+        <h2> Jungle Memory </h2>
         <DialogTitle id="alert-dialog-title">
-          Hurray !!! You completed the game !!
+          Hurray ! You completed the game !!
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            You got {moves} moves.Your best score is {bestScore}
+            You got {moves} moves. Your best score is {bestScore}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

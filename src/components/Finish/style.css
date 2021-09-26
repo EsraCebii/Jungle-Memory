@@ -1,26 +1,39 @@
+@font-face {
+  font-family: "Lunacy";
+  src: url("../../Fonts/Lunacy.woff") format("woff"),url("../../Fonts/Lunacy.woff2") format("woff2")
+}
+@font-face {
+  font-family: "Creepy";
+  src: url("../../Fonts/Creepy.woff") format("woff"),url("../../Fonts//Creepy2.woff2") format("woff2")
+}
+
 .MuiDialog-paperWidthSm {
     max-width: null !important;
     width: 80% !important;
     /* background-color: rgb(142, 208, 212) !important; */
     background: radial-gradient(
-      rgb(136, 255, 229) 60%,
-      rgba(243, 243, 56, 0.664)
+      #ffbe76 60%,
+      #A3CB38
     );
   
     border-radius: 30px !important;
     text-align: center;
   }
   h2 {
+    font-family: Creepy, serif;
     color: rgb(255, 0, 221) !important;
     margin-top: 15px;
   }
   .MuiDialogContentText-root {
-    font-size: 20px !important;
+    font-size: 30px !important;
+    font-family: Lunacy, serif !important;
   }
   .MuiTypography-h6 {
-    font-size: 25px !important;
+    font-size: 35px !important;
     color: orangered !important;
+    font-weight: normal;
     font-weight: 500;
+    font-family: Lunacy, serif !important;
   }
   .MuiDialogActions-root {
     display: unset !important;
