@@ -14,21 +14,22 @@ const Finish = ({kazandı, handleRestart, showModal, bestScore, puan }) => {
         open={showModal}
         disableBackdropClick
         disableEscapeKeyDown
+        onClose={handleRestart}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <h2> Jungle Memory Game </h2>
         {kazandı && (
           <DialogTitle id="alert-dialog-title">
-          "Hurray ! You completed the game !!"
+          "Hurray ! You completed the game on time !!"
           </DialogTitle>
 
         ) }
         {
           !kazandı && (
             <DialogTitle id="alert-dialog-title">
-         Oh My God !! Time is Up.
-        </DialogTitle>
+              Oh My God !! Time is Up.
+            </DialogTitle>
 
           )
         }

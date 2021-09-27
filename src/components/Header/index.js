@@ -6,10 +6,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import { deepOrange, green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 
-
-
-
-const Header = ({ num, bestScore, handleRestart,puan }) => {
+const Header = ({ num, bestScore,puan }) => {
  
   return (
     <div>
@@ -32,9 +29,9 @@ const Header = ({ num, bestScore, handleRestart,puan }) => {
                 },
               }}
             >
-              <IconButton aria-label="fingerprint" variant="contained" color="success" onClick={handleRestart}>
+              {/* <IconButton aria-label="fingerprint" variant="contained" color="success" onClick={handleRestart}>
                 <RefreshIcon sx={{ color: deepOrange[500], fontSize: 40, backgroundColor: green }} />
-              </IconButton>
+              </IconButton> */}
             </Box>
 
           </div>
