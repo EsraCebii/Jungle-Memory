@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Header";
 import { Col, Container, Row } from "react-bootstrap";
 import Card from "./components/Card";
-import Finish from "./components/Finish/index.js";
+import Finish from "./components/Finish/indexx";
 import Start from "./components/Start/index";
 
 function swap(array, i, j) {

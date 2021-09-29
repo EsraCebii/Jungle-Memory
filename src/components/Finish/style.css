@@ -7,9 +7,11 @@
   src: url("../../Fonts/Creepy.woff") format("woff"),url("../../Fonts//Creepy2.woff2") format("woff2")
 }
 
-.MuiDialog-paperWidthSm {
-    max-width: null !important;
-    width: 80% !important;
+.box {
+    margin-top: 15%;
+    margin-left: 33%;
+    
+    width: 35% !important;
     /* background-color: rgb(142, 208, 212) !important; */
     background: radial-gradient(
       #ffbe76 60%,
@@ -19,25 +21,27 @@
     border-radius: 30px !important;
     text-align: center;
   }
-  h2 {
+  #modal-modal-title {
     font-family: Creepy, serif;
+    font-size: 30px !important;
     color: rgb(255, 0, 221) !important;
     margin-top: 15px;
+    padding-top: 15px;
   }
-  .MuiDialogContentText-root {
-    font-size: 30px !important;
-    font-family: Lunacy, serif !important;
-  }
-  .MuiTypography-h6 {
+  
+  #modal-modal-description {
+    
     font-size: 35px !important;
     color: orangered !important;
     font-weight: normal;
     font-weight: 500;
     font-family: Lunacy, serif !important;
   }
-  .MuiDialogActions-root {
-    display: unset !important;
-  }
-  .MuiButton-label:hover {
+ 
+  button:hover {
     color: rgb(255, 0, 221) !important;
   }
+
+.button{
+  margin: 30px 10px;
+}
