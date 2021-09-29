@@ -1,9 +1,6 @@
 import React from "react";
 import "./style.css";
 import { Container } from "react-bootstrap";
-import IconButton from '@mui/material/Button';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import { deepOrange, green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 
 const Header = ({ num, bestScore,puan }) => {

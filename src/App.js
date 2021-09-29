@@ -56,37 +56,29 @@ const App = () => {
     setShouldDisableAllCards(false);
   };
 
-  const checkCompletion = () => {
-    if (Object.keys(matchedCards).length === uniqueCardsArray.length) {
-      setShowModal(true);
-      clearInterval(intervalRef.current);
-      const highScore = Math.max(puan, bestScore);
-      setBestScore(highScore);
-      localStorage.setItem("bestScore", highScore);
-    }
-  };
+
   
   useEffect(() => {
+    const time = () => {
+      if (Object.keys(matchedCards).length === uniqueCardsArray.length && num === 0) {
+        clearInterval(intervalRef.current);
+        setShowModal(true);
+        const highScore = Math.max(puan, bestScore);
+        setBestScore(highScore);
+        localStorage.setItem("bestScore", highScore);
+      } else if( num === 0) {
+        clearInterval(intervalRef.current);
+        setShowModal(true);
+        const highScore = Math.max(puan, bestScore);
+        setBestScore(highScore);
+        localStorage.setItem("bestScore", highScore);
+      }
+    };
     time()
-  }, [num])
+  }, [num,bestScore,matchedCards,puan])
 
   const kazandı = Object.keys(matchedCards).length === uniqueCardsArray.length;
-  const time = () => {
-    if (Object.keys(matchedCards).length === uniqueCardsArray.length && num === 0) {
-      clearInterval(intervalRef.current);
-      setShowModal(true);
-      const highScore = Math.max(puan, bestScore);
-      setBestScore(highScore);
-      localStorage.setItem("bestScore", highScore);
-    } else if( num === 0) {
-      clearInterval(intervalRef.current);
-      setShowModal(true);
-      const highScore = Math.max(puan, bestScore);
-      setBestScore(highScore);
-      localStorage.setItem("bestScore", highScore);
-
-    }
-  };
+ 
 
   const evaluate = () => {
     const [first, second] = openCards;
@@ -125,8 +117,17 @@ const App = () => {
   }, [openCards]);
 
   useEffect(() => {
+    const checkCompletion = () => {
+      if (Object.keys(matchedCards).length === uniqueCardsArray.length) {
+        setShowModal(true);
+        clearInterval(intervalRef.current);
+        const highScore = Math.max(puan, bestScore);
+        setBestScore(highScore);
+        localStorage.setItem("bestScore", highScore);
+      }
+    };
     checkCompletion();
-  }, [matchedCards]);
+  }, [matchedCards, bestScore,puan]);
 
   const checkIsFlipped = (index) => {
     return openCards.includes(index);
@@ -168,9 +169,8 @@ const App = () => {
           <Row>
             {cards.map((card, index) => {
               return (
-                <Col xs={6} md={3} lg={2}>
+                <Col xs={6} md={3} lg={2} key={index}>
                   <Card
-                    key={index}
                     card={card}
                     index={index}
                     matchedCards={matchedCards}
